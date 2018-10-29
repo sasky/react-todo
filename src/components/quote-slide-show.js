@@ -7,27 +7,26 @@ class QuoteSlideShow extends React.Component {
   };
 
   componentDidMount() {
-
     const thirtySeconds = 1000 * 30;
     this.timerID = window.setInterval(
       () => this.eventNextSlide(),
       thirtySeconds
     );
   }
-  
+
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
-  
-  currentQuote = () =>  this.props.quotes[this.state.currentQuote];
+
+  currentQuote = () => this.props.quotes[this.state.currentQuote];
 
   eventNextSlide = () => {
     const quoteLength = this.props.quotes.length;
     let nextQuote = this.state.currentQuote + 1;
-    if(nextQuote >= quoteLength) {
+    if (nextQuote >= quoteLength) {
       nextQuote = 0;
     }
-    this.setState({currentQuote:nextQuote});
+    this.setState({ currentQuote: nextQuote });
   };
 
   render() {
