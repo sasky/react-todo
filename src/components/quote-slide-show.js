@@ -1,9 +1,11 @@
-import { React } from "react";
+import React from "react";
 import { Button } from "reactstrap";
 class QuoteSlideShow extends React.Component {
+  
   state = {
     quotes: []
   };
+  
   static getDerivedStateFromProps({ quotes }) {
     quotes = quotes.reduce(function(carey, quote, currentIndex) {
       const index = currentIndex + 1;
@@ -13,20 +15,23 @@ class QuoteSlideShow extends React.Component {
     }, []);
     return { quotes };
   }
-  componentDidMount() {
-    const thirtySeconds = 1000 * 30;
-    this.timerID = window.setInterval(
-      () => this.eventNextSlide(),
-      thirtySeconds
-    );
-  }
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
+  
+  // componentDidMount = () => {
+  //   const thirtySeconds = 1000 * 30;
+  //   this.timerID = window.setInterval(
+  //     () => this.eventNextSlide(),
+  //     thirtySeconds
+  //   );
+  // }
+  
+  // componentWillUnmount = () => {
+  //   clearInterval(this.timerID);
+  // }
+  
   currentQuoteObject = () => this.state.quotes.find(o => o.current);
 
   eventNextSlide = () => {
+    console.log('STATE ' ,this.state.quotes);
     let currentIndex = this.currentQuoteObject().index;
 
     let nextObj = this.state.quotes.find(o => o.index === currentIndex + 1);
@@ -38,13 +43,15 @@ class QuoteSlideShow extends React.Component {
       }
       return quoteObj;
     });
-    this.setState({ quotes });
+    console.log('QUOTES ', quotes);
+    this.setState((state) => {quotes: [...state.quotes, quotes]} );
+   
   };
 
   render() {
     return (
       <div className="container mt-5 mb-5">
-        <h1 className="text-center"> {this.currentQuoteObject().quote} </h1>
+        <h1 className="text-center"> {this.state.quotes.find(o => o.current).quote} </h1>
 
         <Button onClick={this.eventNextSlide} color="primary" size="lg">
           Next Slide {this.state.currentSlide}
