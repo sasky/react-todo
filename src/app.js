@@ -4,14 +4,18 @@ import ReactDOM from "react-dom";
 //import "bootstrap/scss/bootstrap.scss";
 import "bootstrap/dist/css/bootstrap.css";
 import Data from "../data.json";
-import QuoteSlideShow from "./components/quote-slide-show.js";
+import QuoteSlideShow from "./quote-slide-show.js";
+import TaskTracker from "./task-tracker";
 
 class App extends React.Component {
   render() {
     return (
-      <main>
-        <QuoteSlideShow quotes={Data.quotes} />
-      </main>
+      <React.StrictMode>
+        <main className="container-fluid bg-info">
+          <QuoteSlideShow quotes={Data.quotes} />
+          <TaskTracker />
+        </main>
+      </React.StrictMode>
     );
   }
 }

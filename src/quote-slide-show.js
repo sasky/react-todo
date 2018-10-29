@@ -1,5 +1,7 @@
 import React from "react";
+import propTypes from "prop-types";
 //import { Button } from "reactstrap";
+
 class QuoteSlideShow extends React.Component {
   timerID = 0;
   state = {
@@ -31,8 +33,8 @@ class QuoteSlideShow extends React.Component {
 
   render() {
     return (
-      <div className="container mt-5 mb-5">
-        <h1 className="text-center"> {this.currentQuote()} </h1>
+      <div className="container pt-5 pb-5 bg-dark">
+        <h1 className="text-center text-white"> {this.currentQuote()} </h1>
         {/*
         <Button onClick={this.eventNextSlide} color="primary" size="lg">
           Next Slide {this.state.currentSlide}
@@ -42,4 +44,7 @@ class QuoteSlideShow extends React.Component {
     );
   }
 }
+QuoteSlideShow.propTypes = {
+  quotes: propTypes.array
+};
 export default QuoteSlideShow;
